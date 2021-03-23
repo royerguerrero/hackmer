@@ -1,4 +1,19 @@
 <section class="cart" id="cart-container">
-    <button id="close-cart">Cerrar</button>
-    <h3>Añade productos al carrito</h3>
+    <div class="cart__products">
+        <h3 class="cart__heading">Productos (<span>0</span>)</h3>
+        <hr>
+        Aun no has añadido ningun producto 🙃
+        <div class="cart__product">
+            <img class="cart__product-picture" src="/media/categories/Rectangle_6.jpg" alt="Imagen del producto">
+            <div class="cart__product-content">
+                <h4 class="cart__product-name">Product Name</h4>
+                <span class="cart__product-price">$ 100.000 COP</span>
+            </div>
+            <div class="cart__product-counter">
+                <span>-</span><span>1</span><span>+</span>
+            </div>
+            <span class="cart__product-delete">❌</span>
+        </div>
+    </div>
+    <button class="button" id="close-cart">Volver a la tienda</button>
 </section>

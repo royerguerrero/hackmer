@@ -16,7 +16,7 @@
     <section class="categories">
         {% for category in categories %}
             <div class="category">
-                <img src="{{ category.picture.url }}" alt="{{ category.name }}">
+                <img class="category__image" src="{{ category.picture.url }}" alt="{{ category.name }}">
                 <div class="category__name">
                     {{ category.name }}
                 </div>
