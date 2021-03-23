@@ -1,0 +1,20 @@
+{% load static %}
+<header class="header">
+    <a href="{% url "home" %}">
+        <img class=" header__brand" src="{% static "images/Logo.svg" %}" alt="">
+    </a>
+    <nav class="header__nav">
+        <div class="header__menu" id="menu">
+            <a class="header__item" href="{% url "home" %}">Home</a>
+            <a class="header__item" href="">Productos</a>
+            <a class="header__item" href="https://linktr.ee/hackmerstore" target="_blank">Contacto</a>
+            <a class="header__item" href="">Cuenta</a>
+        </div>
+        <div class="header__cart" id="cart">
+            🛒<span>(0)</span>
+        </div>
+        <div class="header__burger" id="burger">
+            🍔
+        </div>
+    </nav>
+</header>

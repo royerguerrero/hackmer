@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Tienda de articulos de tecnologia
+{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <h1 class="hero__heading">Hackmer Store</h1>
+        <p class="hero__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate senectus elementum sed venenatis. In cursus odio dui mauris gravida pharetra. Integer nisl amet urna, sodales neque dolor. Venenatis lectus metus, faucibus massa luctus ut. Nulla sagittis vitae amet, enim sed gravida. In nec est risus adipiscing pellentesque proin non lorem. Orci eget ultricies enimm.</p>
+        <div class="hero__social">
+            <a href="">Facebook</a>
+            <a href="">Instagram</a>
+        </div>
+    </section>
+    <section class="categories">
+        {% for category in categories %}
+            <div class="category">
+                <img src="{{ category.picture.url }}" alt="{{ category.name }}">
+                <div class="category__name">
+                    {{ category.name }}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

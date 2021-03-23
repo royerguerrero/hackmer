@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: #111111;
+    --light: #F3F3F3;
+    --blue: #0098CF;
+    --violet: #A61CEC;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+main {
+    margin-top: 100px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    margin: auto;
+    position: fixed;
+    width: 100%;
+    ba
+}
+
+.header__brand {
+    width: 183px;
+}
+
+.header__nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: end;
+}
+
+.header__menu {
+    display: flex;
+    gap: 10px;
+    z-index: 0;
+}
+
+.header__menu--show {
+    display: flex !important;
+}
+
+.header__item {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--light);
+    padding: 8px;
+    background: transparent;
+}
+
+.header__item:hover {
+    background: linear-gradient(97.36deg, #A61CEC 14.83%, #0098CF 89.37%);
+}
+
+.header__cart {
+    padding: 8px;
+}
+
+.header__burger {
+    display: none;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 0 50px;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(17, 17, 17, 1) 90.96%), url("./images/bg.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.hero__heading {
+    font-size: 70px;
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(var(--violet), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero__paragraph {
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+.categories {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.category__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 38px;
+    text-align: center;
+    background: linear-gradient(91.66deg, var(--violet) 7.48%, var(--blue) 97.28%);
+}
+
+.footer {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 15% 40% 40%;
+    gap: 50px;
+    align-items: center;
+    justify-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.footer__item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer__about-us {
+    text-align: center;
+}
+
+.footer__logo {
+    margin-bottom: 10px;
+}
+
+.footer__item-heading {
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.footer__item-link {
+    color: var(--blue);
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.legality {
+    padding: 150px 50px;
+}
+
+.legality__heading {
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.legality__content {
+    width: 80%;
+    margin: auto;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.cart {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 20px;
+    max-width: 40vw;
+    height: 100vh;
+}
+
+.cart--show {
+    display: initial;
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (max-width: 1024px){
+    .header__brand {
+        width: 150px;
+    }
+
+    .hero__paragraph {
+        width: 100%;
+    }
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (max-width: 767px) {
+    .header__burger {
+        display: inline;
+    }
+
+    .header__menu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        backdrop-filter: blur(10px);
+    }
+
+    .hero__heading {
+        line-height: 100%;
+        margin-bottom: 20px;
+    }
+
+
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+    .header {
+        padding: 20px;
+    }
+
+    .header__brand {
+        width: 100px;
+    }
+}
+
+
