@@ -8,19 +8,15 @@
     <section class="hero">
         <h1 class="hero__heading">Hackmer Store</h1>
         <p class="hero__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate senectus elementum sed venenatis. In cursus odio dui mauris gravida pharetra. Integer nisl amet urna, sodales neque dolor. Venenatis lectus metus, faucibus massa luctus ut. Nulla sagittis vitae amet, enim sed gravida. In nec est risus adipiscing pellentesque proin non lorem. Orci eget ultricies enimm.</p>
-        <div class="hero__social">
-            <a href="">Facebook</a>
-            <a href="">Instagram</a>
-        </div>
     </section>
-    <section class="categories">
+    <section class="categories" id="products">
         {% for category in categories %}
-            <div class="category">
+            <a class="category" href="{% url 'category' category.pk %}">
                 <img class="category__image" src="{{ category.picture.url }}" alt="{{ category.name }}">
                 <div class="category__name">
                     {{ category.name }}
                 </div>
-            </div>
+            </a>
         {% endfor %}
     </section>
 {% endblock %}

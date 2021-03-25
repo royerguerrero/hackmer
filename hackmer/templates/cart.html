@@ -1,13 +1,17 @@
 <section class="cart" id="cart-container">
     <div class="cart__products">
-        <h3 class="cart__heading">Productos (<span>0</span>)</h3>
+        <h3 class="cart__heading">Productos (<span id="cart-products-count">0</span>)</h3>
         <hr>
-        Aun no has añadido ningun producto 🙃
+        <div id="cart-products-wrapper">
+            Aun no has añadido ningun producto 🙃
+        </div>
         <div class="cart__product">
-            <img class="cart__product-picture" src="/media/categories/Rectangle_6.jpg" alt="Imagen del producto">
             <div class="cart__product-content">
-                <h4 class="cart__product-name">Product Name</h4>
-                <span class="cart__product-price">$ 100.000 COP</span>
+                <img class="cart__product-picture" src="/media/categories/Rectangle_6.jpg" alt="Imagen del producto">
+                <div>
+                    <h4 class="cart__product-name">Product Name</h4>
+                    <span class="cart__product-price">$ 100.000 COP</span>
+                </div>
             </div>
             <div class="cart__product-counter">
                 <span>-</span><span>1</span><span>+</span>

@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=DFjh67863DFjh
     volumes:
-      - db-data:/var/lib/postgresql/data1
+      - db-data:/var/lib/postgresql/data
   backend:
     build: .
     command: python manage.py runserver 0.0.0.0:8000

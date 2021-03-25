@@ -1,3 +1,20 @@
-from django.shortcuts import render
+"""Products Views"""
 
-# Create your views here.
+# Django
+from django.views.generic import DetailView
+
+# Models
+from products.models import Category, Product
+
+
+class CategoryDetail(DetailView):
+    template_name = 'categories/detail.html'
+    model = Category
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        products = Product.objects.filter(category=super().get_object())
+        for i in products:
+            print(i)
+        context['products'] = products
+        return context

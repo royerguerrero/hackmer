@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load product_extras %}
+
+{% block content %}
+    <div class="category-detail">
+        <h1 class="category-detail__name">{{ category.name }}</h1>
+        <p class="category-detail__overview">{{ category.description }}</p>
+    </div>
+    <section class="products-collection">
+        {% for product in products %}
+            <div class="product-collection">
+                <img class="product-collection__picture" src="{{ product|get_main_picture }}"
+                     alt="{{ product.description }}">
+                <div class="product-collection__content">
+                    <p class="product-collection__heading">{{ product.price|format_to_cop }}</p>
+                    <p class="product-collection__older_price">$ 400,000 COP</p>
+                        <span class="product-collection__discount">30%</span>
+                    <h2 class="product-collection__paragraph">{{ product.name }}</h2>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
