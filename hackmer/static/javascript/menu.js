@@ -3,5 +3,6 @@ const headerMenu = document.getElementById('menu')
 
 
 burgerButton.addEventListener('click', () => {
-    headerMenu.classList.toggle("header__menu--show")
+    headerMenu.classList.toggle('header__menu--show')
+    burgerButton.classList.toggle('header__cart--close')
 })

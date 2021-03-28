@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <div class="product-detail" id="product-detail" data-id="{{ product.id }}" data-name="{{ product.name }}" data-price="{{ product.price }}">
+        <div class="product-detail__gallery">
+            <div class="product-detail__thumbnails">
+                {% for image in images %}
+                    <div class="product-detail__thumbnail">
+                        <img src="{{ image }}" alt="{{ product.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="product-detail-main-image">
+                <img class="product-detail__main-picture">
+            </div>
+        </div>
+        <div class="product-detail__content">
+            <h1 class="product-detail__name">
+                {{ product.name }}
+            </h1>
+            <p class="product-detail__overview">{{ product.description }}</p>
+            <br>
+            <ul class="product-detail__features">
+                {% for feature in product.features %}
+                    <li class="product-detail__feature">{{ feature }}</li>
+                {% endfor %}
+            </ul>
+            <form class="product-detail__buy-options">
+                <label for="quantity">Cantidad</label>
+                <select class="product-detail__quantity" name="quantity" id="product-quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <button class="button" type="button" id="add-to-cart-button">
+                    Añadir al carrito
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script defer src="{% static "javascript/product_gallery.js" %}"></script>
+{% endblock %}

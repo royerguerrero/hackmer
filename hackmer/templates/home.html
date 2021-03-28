@@ -11,7 +11,7 @@
     </section>
     <section class="categories" id="products">
         {% for category in categories %}
-            <a class="category" href="{% url 'category' category.pk %}">
+            <a class="category" href="{% url 'category' category.slug %}">
                 <img class="category__image" src="{{ category.picture.url }}" alt="{{ category.name }}">
                 <div class="category__name">
                     {{ category.name }}
