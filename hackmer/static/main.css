@@ -279,6 +279,13 @@ main {
 .button:hover {
     background: var(--violet);
     color: var(--light);
+    border-color: var(--violet);
+}
+
+.button--alternative {
+    background: var(--blue);
+    color: var(--light);
+    border-color: var(--blue);
 }
 
 .cart__products-wrapper {
@@ -288,7 +295,7 @@ main {
     gap: 20px;
     white-space: nowrap;
     overflow-x: hidden;
-    height: 80vh;
+    height: 75vh;
 }
 
 .cart__product {
@@ -351,6 +358,29 @@ main {
     content: '';
     background: url("icons/trash.svg") no-repeat center;
     cursor: pointer;
+}
+
+.cart__controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.cart__controls button {
+    width: 100%;
+}
+
+.cart__complete-purchase--hide {
+    display: none;
+}
+
+.cart__total-purchase {
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .category-detail {

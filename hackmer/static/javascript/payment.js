@@ -32,8 +32,8 @@ payment.addEventListener('click', () => {
         name_billing: "Andres Perez",
         address_billing: "Carrera 19 numero 14 91",
         type_doc_billing: "cc",
-        mobilephone_billing: "3050000000",
         number_doc_billing: "100000000",
+        mobilephone_billing: "3050000000",
 
         //atributo deshabilitación metodo de pago
         methodsDisable: []

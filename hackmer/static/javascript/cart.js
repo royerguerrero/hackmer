@@ -4,7 +4,7 @@ const cartContainer = document.getElementById('cart-container')
 
 const toggleCartButtons = [cartCloseButton, cartButton]
 
-toggleCartButtons.forEach(i => i.addEventListener('click', () => {
+toggleCartButtons.map(i => i.addEventListener('click', () => {
     cartContainer.classList.toggle('cart--show')
 }))
 
@@ -13,31 +13,80 @@ const cartProductsWrapper = document.getElementById('cart-products-wrapper')
 
 const addToCartItem = document.getElementById('add-to-cart-button')
 
+const completePurchase = document.getElementById('complete-the-purchase')
+const totalPurchase = document.getElementById('total-purchase')
+
+const formatToCOP = value => {
+    return new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 0
+    }).format(value)
+}
+
 function Cart() {
-    this.products = []
+    this.products = {}
     if (this.getProducts()) {
         this.products = this.getProducts()
     }
+}
+
+Cart.prototype.calculateTotalPurchase = function () {
+    let total = 0
+    const products = this.products
+    for (i in products) {
+        total += parseFloat(products[i].price)
+    }
+
+    return formatToCOP(total)
 }
 
 Cart.prototype.getProducts = function () {
     return JSON.parse(localStorage.getItem('products'))
 }
 
+Cart.prototype.getProduct = function (productId) {
+    return this.products[productId]
+}
+
+Cart.prototype.addProduct = function (product) {
+    if (product.quantity > 10) {
+        product.quantity = 10
+    } else if (product.quantity < 1) {
+        product.quantity = 1
+    }
+
+    this.products[product.id] = product
+    const message = product.quantity === '1' ? `Has añadido un ${product.name} al carrito.` : `Has añadido ${product.quantity} unidades de ${product.name} al carrito.`
+
+    new Noty({
+        text: message,
+        layout: 'bottomLeft',
+    }).show()
+}
+
+Cart.prototype.updateProductQuantity = function (productId, quantity) {
+    this.products[productId].quantity = quantity
+}
+
+Cart.prototype.deleteProduct = function (productId) {
+    delete this.products[productId]
+}
+
 Cart.prototype.render = function () {
     const products = this.products
+    cartProductsCounter.innerText = `${Object.keys(products).length}`
 
-    if (products.length > 0) {
-        cartProductsCounter.innerText = products.length
+    if (Object.keys(products).length > 0) {
         let content = ''
         for (let product in products) {
             content += `
-            <div class="cart__product" id="product-number${products[product].id}-in-cart">
+            <div class="cart__product" data-id="${products[product].id}">
                 <div class="cart__product-content">
                     <img class="cart__product-picture" src="${products[product].picture}" alt="Imagen del producto">
                     <div>
                         <h4 class="cart__product-name">${products[product].name}</h4>
-                        <span class="cart__product-price">$ ${products[product].price} COP</span>
+                        <span class="cart__product-price">${formatToCOP(products[product].price)} COP</span>
                     </div>
                 </div>
                 <div class="cart__product-options">
@@ -52,20 +101,45 @@ Cart.prototype.render = function () {
             `
         }
         cartProductsWrapper.innerHTML = content
+
+        completePurchase.classList.remove('cart__complete-purchase--hide')
+        totalPurchase.innerHTML = `Total: ${this.calculateTotalPurchase()} COP`
     } else {
         cartProductsWrapper.innerHTML = 'Aun no has añadido ningun producto 🙃'
+        completePurchase.classList.add('cart__complete-purchase--hide')
     }
-}
 
-Cart.prototype.addProduct = function (product) {
-    this.products.push(product)
+    const cartProducts = document.querySelectorAll('.cart__product')
 
-    const message = product.quantity === '1' ? `Has añadido un ${product.name} al carrito.` : `Has añadido ${product.quantity} unidades de ${product.name} al carrito.`
+    for (let i = 0; i < cartProducts.length; i++) {
+        const deleteButton = cartProducts[i].querySelector('.cart__product-delete')
+        deleteButton.addEventListener('click', () => {
+            this.deleteProduct(cartProducts[i].dataset.id)
+            this.save()
+        })
 
-    new Noty({
-        text: message,
-        layout: 'bottomLeft',
-    }).show()
+        const counterItem = cartProducts[i].querySelector('.cart__product-n-products')
+        const counterButtonToAdd = cartProducts[i].querySelector('.cart__product-add-or-subtract:last-child')
+        const counterButtonToSubtract = cartProducts[i].querySelector('.cart__product-add-or-subtract:first-child')
+
+        counterButtonToAdd.addEventListener('click', () => {
+            if (parseInt(counterItem.textContent) < 10) {
+                const newCount = parseInt(counterItem.textContent) + 1
+                counterItem.innerHTML = `${newCount}`
+                this.updateProductQuantity(cartProducts[i].dataset.id, newCount)
+                this.save()
+            }
+        })
+
+        counterButtonToSubtract.addEventListener('click', () => {
+            if (parseInt(counterItem.textContent) > 1) {
+                const newCount = parseInt(counterItem.textContent) - 1
+                counterItem.innerHTML = `${newCount}`
+                this.updateProductQuantity(cartProducts[i].dataset.id, newCount)
+                this.save()
+            }
+        })
+    }
 }
 
 Cart.prototype.save = function () {
@@ -84,14 +158,16 @@ function Product(id, name, price, picture, quantity) {
 const myCart = new Cart()
 myCart.render()
 
-addToCartItem.addEventListener('click', () => {
-    const product = document.getElementById('product-detail')
-    const quantity = document.getElementById('product-quantity')
-    const picture = document.getElementsByClassName('product-detail__main-picture')[0]
-    const newProduct = new Product(
-        product.dataset.id, product.dataset.name, product.dataset.price,
-        picture.src, quantity.value
-    )
-    myCart.addProduct(newProduct)
-    myCart.save()
-})
+if (addToCartItem) {
+    addToCartItem.addEventListener('click', () => {
+        const product = document.getElementById('product-detail')
+        const quantity = document.getElementById('product-quantity')
+        const picture = document.getElementsByClassName('product-detail__main-picture')[0]
+        const newProduct = new Product(
+            product.dataset.id, product.dataset.name, product.dataset.price,
+            picture.src, quantity.value
+        )
+        myCart.addProduct(newProduct)
+        myCart.save()
+    })
+}

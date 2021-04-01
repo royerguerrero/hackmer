@@ -1,3 +1,11 @@
+"""Order models"""
+
+# Django
 from django.db import models
 
-# Create your models here.
+# Models
+# from customers.models import Customer
+
+
+class Order(models.Model):
+    pass

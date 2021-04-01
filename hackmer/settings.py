@@ -135,11 +135,6 @@ if DEBUG:
 else:
     STATIC_ROOT = 'hackmer/static/'
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
-]
-
 
 # Media configuration
 MEDIA_URL = '/media/'

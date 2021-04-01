@@ -3,5 +3,15 @@
         <h3 class="cart__heading">Productos (<span id="cart-products-count">0</span>)</h3>
         <div class="cart__products-wrapper" id="cart-products-wrapper"></div>
     </div>
-    <button class="button" id="close-cart">Volver a la tienda</button>
+    <div class="cart__controls">
+        <div class="cart__complete-purchase cart__complete-purchase--hide"  id="complete-the-purchase">
+            <span class="cart__total-purchase" id="total-purchase">
+                Total: $ 50.000 COP
+            </span>
+            <a href="{% url 'purchase' %}">
+                <button class="button button--alternative">Terminar la compra</button>
+            </a>
+        </div>
+        <button class="button" id="close-cart">Volver a la tienda</button>
+    </div>
 </section>

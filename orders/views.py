@@ -1,3 +1,9 @@
+"""Orders views"""
+
+# Django
+from django.views.generic import FormView
 from django.shortcuts import render
 
-# Create your views here.
+
+class PurchaseView(FormView):
+    template_name = 'orders/purchase.html'
