@@ -1,5 +1,10 @@
-{% extends base.html %}
+{% extends "base.html" %}
 
 {% block content %}
-    <h1>Purchase</h1>
+    <br><br><br><br><br><br><br><br><br><br>
+    <h1>Orden #3276836</h1>
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send message">
+</form>
 {% endblock %}

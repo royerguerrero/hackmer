@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load product_extras %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-    <div class="product-detail" id="product-detail" data-id="{{ product.id }}" data-name="{{ product.name }}" data-price="{{ product.price }}">
+    <div class="product-detail" id="product-detail" data-id="{{ product.id }}" data-name="{{ product.name }}"
+         data-price="
+                 {% if product.discount > 0 %}{{ product.price|get_discount_price:product.discount }}{% else %}{{ product.price }}{% endif %}">
         <div class="product-detail__gallery">
             <div class="product-detail__thumbnails">
                 {% for image in images %}
@@ -23,12 +26,21 @@
                 {{ product.name }}
             </h1>
             <p class="product-detail__overview">{{ product.description }}</p>
-            <br>
             <ul class="product-detail__features">
                 {% for feature in product.features %}
                     <li class="product-detail__feature">{{ feature }}</li>
                 {% endfor %}
             </ul>
+            <p class="product-detail__price">
+                {% if product.discount > 0 %}
+                    {{ product.price|get_discount_price:product.discount|format_to_cop }}<br>
+                    <span class="product-detail__old-price">{{ product.price|format_to_cop }}</span>
+                    <span class="product-detail__discount">{{ product.discount }}%</span>
+                {% else %}
+                    {{ product.price|format_to_cop }}
+                {% endif %}
+            </p>
+            <br>
             <form class="product-detail__buy-options">
                 <label for="quantity">Cantidad</label>
                 <select class="product-detail__quantity" name="quantity" id="product-quantity">

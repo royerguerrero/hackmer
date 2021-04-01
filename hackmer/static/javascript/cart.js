@@ -35,7 +35,7 @@ Cart.prototype.calculateTotalPurchase = function () {
     let total = 0
     const products = this.products
     for (i in products) {
-        total += parseFloat(products[i].price)
+        total += parseFloat(products[i].price) * parseFloat(products[i].quantity)
     }
 
     return formatToCOP(total)
@@ -86,7 +86,7 @@ Cart.prototype.render = function () {
                     <img class="cart__product-picture" src="${products[product].picture}" alt="Imagen del producto">
                     <div>
                         <h4 class="cart__product-name">${products[product].name}</h4>
-                        <span class="cart__product-price">${formatToCOP(products[product].price)} COP</span>
+                        <span class="cart__product-price">${formatToCOP(products[product].price * products[product].quantity)} COP</span>
                     </div>
                 </div>
                 <div class="cart__product-options">

@@ -16,11 +16,11 @@
 
 
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark);
+    background: var(--dark);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -457,7 +457,7 @@ main {
 }
 
 .product-detail__features {
-    padding: 30px 20px;
+    padding: 10px 20px;
 }
 
 .product-detail__gallery {
@@ -503,6 +503,25 @@ main {
     color: var(--light);
     background: var(--semi-dark);
     border: 2px solid var(--violet);
+}
+
+.product-detail__price {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 10px;
+    line-height: 25px;
+}
+
+.product-detail__old-price {
+    font-size: 18px;
+    font-weight: normal;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.product-detail__discount {
+    color: var(--blue);
+    font-size: 20px;
 }
 
 .noty_bar {

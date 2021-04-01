@@ -15,12 +15,14 @@
                 <img class="product-collection__picture" src="{{ product|get_main_picture }}"
                      alt="{{ product.description }}">
                 <div class="product-collection__content">
-                    <p class="product-collection__heading">{{ product.price|format_to_cop }}</p>
-                    {% if product.discount %}
-                        <p class="product-collection__older_price">$ {{ product.price }} COP</p>
+                    {% if product.discount > 0 %}
+                        <p class="product-collection__heading">{{ product.price|get_discount_price:product.discount|format_to_cop }}</p>
+                        <p class="product-collection__older_price">{{ product.price|format_to_cop }}</p>
                         <span class="product-collection__discount">
                             {{ product.discount }}%
                         </span>
+                    {% else %}
+                        <p class="product-collection__heading">{{ product.price|format_to_cop }}</p>
                     {% endif %}
                     <h2 class="product-collection__paragraph">{{ product.name }}</h2>
                 </div>

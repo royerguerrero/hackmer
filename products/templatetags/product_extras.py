@@ -14,3 +14,8 @@ def format_to_cop(value):
 @register.filter(name='get_main_picture')
 def get_main_picture(obj):
     return obj.get_main_picture()
+
+
+@register.filter(name='get_discount_price')
+def get_discount_price(price, discount):
+    return price - (price * discount) / 100
