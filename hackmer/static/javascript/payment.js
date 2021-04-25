@@ -3,41 +3,46 @@ const handler = ePayco.checkout.configure({
     test: true
 })
 
-const payment = document.getElementById('payment')
-payment.addEventListener('click', () => {
-    const data = {
-        //Parametros compra (obligatorio)
-        name: "Vestido Mujer Primavera",
-        description: "Vestido Mujer Primavera",
-        invoice: "1234",
-        currency: "cop",
-        amount: "12000",
-        tax_base: "0",
-        tax: "0",
-        country: "co",
-        lang: "en",
+let orderDetail = 'Tu compra incluye '
 
-        //Onpage="false" - Standard="true"
-        external: "true",
+// orderDetailsData.products.map(product => {
 
+for (let i = 0; i < orderDetailsData.products.length; i++) {
+    const product = orderDetailsData.products[i]
+    orderDetail += `${product.quantity} ${product.name} por el valor de ${formatToCOP(product.price * product.quantity)}`
 
-        //Atributos opcionales
-        extra1: "extra1",
-        extra2: "extra2",
-        extra3: "extra3",
-        confirmation: "http://secure2.payco.co/prueba_curl.php",
-        response: "http://secure2.payco.co/prueba_curl.php",
-
-        //Atributos cliente
-        name_billing: "Andres Perez",
-        address_billing: "Carrera 19 numero 14 91",
-        type_doc_billing: "cc",
-        number_doc_billing: "100000000",
-        mobilephone_billing: "3050000000",
-
-        //atributo deshabilitación metodo de pago
-        methodsDisable: []
+    if (i !== orderDetailsData.products.length - 1) {
+        orderDetail += ', '
     }
+}
 
-    handler.open(data)
-})
+
+const data = {
+    name: `Compra en hackmer por ${orderDetailsData.customer.name} N° ${orderDetailsData.id}`,
+    description: orderDetail,
+    invoice: orderDetailsData.id,
+    currency: "cop",
+    // amount: `${orderDetailsData.products.map(product => parseInt(product.price * product.quantity)).reduce((total, i) => total + i)}`,
+    amount: "10000",
+    tax_base: "0",
+    tax: "0",
+    country: "co",
+    lang: "en",
+
+    external: "true",
+
+
+    extra1: "extra1",
+    extra2: "extra2",
+    extra3: "extra3",
+    confirmation: "http://secure2.payco.co/prueba_curl.php",
+    response: "http://secure2.payco.co/prueba_curl.php",
+
+    name_billing: orderDetailsData.customer.name,
+    address_billing: orderDetailsData.customer.address,
+    type_doc_billing: "cc",
+    mobilephone_billing: orderDetailsData.customer.phone,
+
+}
+
+handler.open(data)

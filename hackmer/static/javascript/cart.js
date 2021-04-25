@@ -1,8 +1,13 @@
 const cartButton = document.getElementById('cart')
 const cartCloseButton = document.getElementById('close-cart')
 const cartContainer = document.getElementById('cart-container')
+const orderEdit = document.getElementById('order-detail-open-cart')
 
 const toggleCartButtons = [cartCloseButton, cartButton]
+
+if (orderEdit) {
+    toggleCartButtons.push(orderEdit)
+}
 
 toggleCartButtons.map(i => i.addEventListener('click', () => {
     cartContainer.classList.toggle('cart--show')
@@ -140,6 +145,9 @@ Cart.prototype.render = function () {
             }
         })
     }
+    try {
+        renderOrder(this)
+    } catch (e) {}
 }
 
 Cart.prototype.save = function () {
@@ -147,12 +155,14 @@ Cart.prototype.save = function () {
     this.render()
 }
 
-function Product(id, name, price, picture, quantity) {
+function Product(id, name, price, picture, quantity, discount, realPrice) {
     this.id = id
     this.name = name
     this.price = price
     this.picture = picture
     this.quantity = quantity
+    this.discount = discount
+    this.realPrice = realPrice
 }
 
 const myCart = new Cart()
@@ -163,9 +173,21 @@ if (addToCartItem) {
         const product = document.getElementById('product-detail')
         const quantity = document.getElementById('product-quantity')
         const picture = document.getElementsByClassName('product-detail__main-picture')[0]
+
+        const discountEl = document.getElementById('product-discount')
+        const discount = discountEl ? discountEl.textContent : 0
+
+        const realPriceEl = document.getElementById('product-real-price')
+        const realPrice = realPriceEl ? realPriceEl.textContent : product.dataset.price
+
         const newProduct = new Product(
-            product.dataset.id, product.dataset.name, product.dataset.price,
-            picture.src, quantity.value
+            product.dataset.id,
+            product.dataset.name,
+            product.dataset.price,
+            picture.src,
+            quantity.value,
+            discount,
+            realPrice
         )
         myCart.addProduct(newProduct)
         myCart.save()

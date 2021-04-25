@@ -1,10 +1,61 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Completa tu compra{% endblock %}
 
 {% block content %}
-    <br><br><br><br><br><br><br><br><br><br>
-    <h1>Orden #3276836</h1>
-    <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Send message">
-</form>
+    <section class="purchase">
+        <h1 class="purchase__heading">Completa tu compra</h1>
+        <div class="purchase__container">
+            <form class="purchase__form" method="post" id="complete-order-form">{% csrf_token %}
+                {% for field in form %}
+                    <div class="form__field">
+                        <label class="form__item" for="{{ field.id_for_label }}">{{ field.label }}
+                            {{ field }}
+                        </label>
+                        {% if field.help_text %}
+                            <span class="form__help-text">{{ field.help_text }}</span>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="form__errors">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <label for="terms" class="form__item purchase__form--terms">
+                    <input type="checkbox" name="terms" id="terms" checked="true">Aceptas terminos y condiciones<a
+                        href="{% url 'returns' %}" class="purchase__form--link-terms">ℹ</a>
+                </label>
+                <div id="products-form"></div>
+                <button class="button" id="purchase-btn" type="submit">Ir al pago</button>
+            </form>
+            <div class="order-detail">
+                <div class="order-detail__header">
+                    <h2 class="order-detail__heading">Detalles de orden</h2>
+                    <a class="order-detail__edit" id="order-detail-open-cart">Editar orden</a>
+                </div>
+                <div class="order-detail__container" id="order-container">
+                    <div class="order-detail__item">
+                        <div class="order-detail__product">
+                            <img class="order-detail__product-image" src="http://0.0.0.0:8000/media/products/Rectangle_12.jpg" alt="">
+                            <div>
+                                <h3 class="order-detail__product-name">Product Name</h3>
+                                <div class="order-detail__product-price">
+                                    $ 80.000 COP
+                                    <p class="order-detail__product-discount">
+                                        20%
+                                        <span class="order-detail__product-original-price">$ 100.000 COP</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="order-detail__item-quantity">X100</p>
+                        <p class="order-detail__item-price">$ 800.000 COP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script defer src="{% static 'javascript/purchase.js' %}"></script>
 {% endblock %}

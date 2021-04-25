@@ -17,6 +17,7 @@ class Cookies(TemplateView):
     template_name = 'legality/cookies.html'
 
 
+
 class DataHandling(TemplateView):
     template_name = 'legality/data.html'
 

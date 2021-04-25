@@ -11,6 +11,9 @@ class Category(models.Model):
     description = models.TextField(blank=True, null=True)
     picture = models.ImageField(upload_to='categories/')
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         verbose_name_plural = 'categories'
 
@@ -28,6 +31,9 @@ class Product(models.Model):
     video = models.URLField(null=True, blank=True)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
     def get_main_picture(self):
         return ProductPicture.objects.filter(main=True, product=self).first()

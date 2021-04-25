@@ -34,8 +34,8 @@
             <p class="product-detail__price">
                 {% if product.discount > 0 %}
                     {{ product.price|get_discount_price:product.discount|format_to_cop }}<br>
-                    <span class="product-detail__old-price">{{ product.price|format_to_cop }}</span>
-                    <span class="product-detail__discount">{{ product.discount }}%</span>
+                    <span class="product-detail__old-price" id="product-real-price">{{ product.price|format_to_cop }}</span>
+                    <span class="product-detail__discount" id="product-discount">{{ product.discount }}%</span>
                 {% else %}
                     {{ product.price|format_to_cop }}
                 {% endif %}

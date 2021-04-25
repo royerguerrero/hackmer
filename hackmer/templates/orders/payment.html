@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Pago{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <section class="payment">
+        <h1 class="payment__heading">En breves momentos sera enviado a <br> la pasarela de pago</h1>
+        <div class="payment__loader"></div>
+    </section>
+{% endblock %}
+
+{% block another_scripts %}
+    <script>
+        const orderDetailsData = {
+            'id': "{{ order.id }}",
+            'customer': {
+                'name': "{{ order.customer.name }}",
+                'phone': "{{ order.customer.number_phone }}",
+                'address': `${ "{{ order.shipping_address.address }}" } | ${ "{{ order.shipping_address.city }}" }(${ "{{ order.shipping_address.state }}" }) ${ "{{ order.shipping_address.zip_code }}" } }`
+            },
+            'products': [
+                {% for product in products %}
+                    {
+                        'name': "{{ product.product.name }}",
+                        'price': parseFloat("{{ product.price }}"),
+                        'quantity': parseInt("{{ product.quantity }}")
+                    },
+                {% endfor %}
+            ]
+        }
+    </script>
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+    <script src="{% static 'javascript/payment.js' %}"></script>
+{% endblock %}

@@ -1,4 +1,4 @@
-"""hackmer URL Configuration"""
+"""Hackmer URL Configuration"""
 
 # Django
 from django.conf.urls.static import static
@@ -19,5 +19,6 @@ urlpatterns = [
     path('devoluciones/', views.ReturnProducts.as_view(), name='returns'),
     path('categoria/<slug:slug>/', products_views.CategoryDetail.as_view(), name='category'),
     path('productos/', include(('products.urls', 'products'), namespace='products')),
-    path('pago/', order_views.PurchaseView.as_view(), name='purchase')
+    path('pago/', order_views.PurchaseView.as_view(), name='purchase'),
+    path('pasarela/<uuid:pk>/', order_views.PaymentView.as_view(), name='payment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

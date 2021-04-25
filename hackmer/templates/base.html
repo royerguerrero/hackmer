@@ -21,9 +21,8 @@
     {% endblock %}
     {% include "footer.html" %}
     <script src="{% static "javascript/menu.js" %}"></script>
-    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
-{#    <script src="{% static "javascript/payment.js" %}"></script>#}
     <script src="{% static "javascript/cart.js" %}"></script>
+    {% block another_scripts %}{% endblock %}
 </body>
 </html>
