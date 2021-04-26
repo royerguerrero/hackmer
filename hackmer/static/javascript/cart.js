@@ -78,6 +78,10 @@ Cart.prototype.deleteProduct = function (productId) {
     delete this.products[productId]
 }
 
+Cart.prototype.clean = function () {
+    this.products = {}
+}
+
 Cart.prototype.render = function () {
     const products = this.products
     cartProductsCounter.innerText = `${Object.keys(products).length}`

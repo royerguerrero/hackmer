@@ -5,8 +5,6 @@ const handler = ePayco.checkout.configure({
 
 let orderDetail = 'Tu compra incluye '
 
-// orderDetailsData.products.map(product => {
-
 for (let i = 0; i < orderDetailsData.products.length; i++) {
     const product = orderDetailsData.products[i]
     orderDetail += `${product.quantity} ${product.name} por el valor de ${formatToCOP(product.price * product.quantity)}`
@@ -42,7 +40,8 @@ const data = {
     address_billing: orderDetailsData.customer.address,
     type_doc_billing: "cc",
     mobilephone_billing: orderDetailsData.customer.phone,
-
 }
 
 handler.open(data)
+myCart.clean()
+myCart.save()
