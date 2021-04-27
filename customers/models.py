@@ -18,8 +18,8 @@ class Customer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-    def __str(self):
-        return self.name
+    def __str__(self):
+        return f'{self.name}[{self.document_id}]'
 
 
 class ShippingAddress(models.Model):
@@ -32,3 +32,6 @@ class ShippingAddress(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.address}, {self.city}({self.state}) {self.zip_code}'
