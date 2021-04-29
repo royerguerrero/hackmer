@@ -12,8 +12,10 @@
     <section class="products-collection">
         {% for product in products %}
             <a class="product-collection" href="{% url 'products:product' product.slug %}">
-                <img class="product-collection__picture" src="{{ product|get_main_picture }}"
-                     alt="{{ product.description }}">
+                <div class="product-collection__picture-wrapper">
+                    <img class="product-collection__picture" src="{{ product|get_main_picture }}"
+                         alt="{{ product.description }}">
+                </div>
                 <div class="product-collection__content">
                     {% if product.discount > 0 %}
                         <p class="product-collection__heading">{{ product.price|get_discount_price:product.discount|format_to_cop }}</p>

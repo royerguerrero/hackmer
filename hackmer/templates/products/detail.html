@@ -26,6 +26,7 @@
                 {{ product.name }}
             </h1>
             <p class="product-detail__overview">{{ product.description }}</p>
+            <button class="product-detail__view-more">Ver toda la descripción</button>
             <ul class="product-detail__features">
                 {% for feature in product.features %}
                     <li class="product-detail__feature">{{ feature }}</li>
@@ -62,5 +63,6 @@
         </div>
     </div>
 
-    <script defer src="{% static "javascript/product_gallery.js" %}"></script>
+    <script defer src="{% static 'javascript/product_gallery.js' %}"></script>
+    <script src="{% static 'javascript/product_detail.js' %}"></script>
 {% endblock %}

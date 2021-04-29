@@ -422,6 +422,8 @@ main {
     cursor: pointer;
     transition: border 400ms;
     text-decoration: none;
+    /*display: grid;*/
+    /*grid-template-rows: 60% auto;*/
 }
 
 .product-collection:hover {
@@ -457,8 +459,17 @@ main {
     font-weight: bold;
 }
 
+.product-collection__picture-wrapper {
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+}
+
 .product-collection__picture {
     width: 100%;
+    object-fit: cover;
 }
 
 .product-detail {
@@ -504,6 +515,23 @@ main {
 .product-detail__main-picture {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+
+.product-detail__view-more {
+    background: transparent;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    padding: 10px 0;
+    color: var(--violet);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 400ms color;
+}
+
+.product-detail__view-more:hover {
+    color: var(--blue);
 }
 
 .product-detail__buy-options {
