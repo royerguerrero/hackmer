@@ -19,19 +19,19 @@ class PurchaseForm(forms.Form):
     email = forms.EmailField(label='Correo electronico')
 
     regex_phone_number = RegexValidator(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$',
-                                        'Ingresa un numero de telefono valido')
+                                        'Ingresa un numero de teléfono valido')
 
-    phone_number = forms.CharField(max_length=10, label='Numero de telefono', validators=[regex_phone_number])
-    alternative_phone_number = forms.CharField(max_length=10, label='Numero de telefono alternativo', required=False,
+    phone_number = forms.CharField(max_length=10, label='Numero de teléfono', validators=[regex_phone_number])
+    alternative_phone_number = forms.CharField(max_length=10, label='Numero de teléfono alternativo', required=False,
                                                validators=[regex_phone_number])
 
     state = forms.ChoiceField(choices=STATE_CHOICES, label='Departamento')
     city = forms.CharField(max_length=100, label='Ciudad')
 
-    address = forms.CharField(max_length=255, label='Direccion')
-    zip_code = forms.CharField(max_length=5, label='Codigo Zip', required=False)
+    address = forms.CharField(max_length=255, label='Direction')
+    zip_code = forms.CharField(max_length=5, label='Código Zip', required=False)
 
-    annotations = forms.CharField(widget=forms.Textarea, label='Observaciones adicionles', required=False)
+    annotations = forms.CharField(widget=forms.Textarea, label='Observaciones adicionales', required=False)
 
     def clean_age(self):
         age = self.cleaned_data['age']
