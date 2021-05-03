@@ -34,6 +34,7 @@ body {
     color: var(--light);
     font-family: 'IBM Plex Sans', sans-serif;
     background: linear-gradient(45deg, var(--dark), var(--violet-deep)) fixed;
+    overflow-x: hidden;
 }
 
 main {
@@ -49,6 +50,8 @@ main {
     position: fixed;
     width: 100%;
     backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 2;
 }
 
 .header__brand {
@@ -112,27 +115,96 @@ main {
 }
 
 .hero {
-    padding: 0 50px;
+    padding: 0 10px 80px;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+    justify-items: center;
+}
+
+.hero > * {
+    z-index: 1;
+}
+
+.hero__img-first {
+    width: 100%;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.hero__img-second {
+    width: 70%;
+    z-index: 1;
+}
+
+.hero::before {
+    content: '';
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    transform: translate(-10%, -30%);
+    border-radius: 50%;
+    background: rgba(166, 28, 236, 0.25);
+    filter: blur(200px);
+}
+
+.hero::after {
+    content: '';
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    border-radius: 50%;
+    background: rgba(26, 166, 217, 0.25);
+    filter: blur(200px);
+    transform: translate(10%, 0%);
+}
+
+.hero__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-end;
-    background: linear-gradient(rgba(0, 0, 0, 0.4) 40%, var(--violet-deep)), url("./images/bg.jpg") no-repeat center;
-    background-size: cover;
+    gap: 30px;
 }
 
 .hero__heading {
-    font-size: 70px;
+    font-size: 152px;
     text-transform: uppercase;
-    background: -webkit-linear-gradient(var(--violet), var(--blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-align: center;
+    letter-spacing: -0.045em;
+    line-height: 120px;
 }
 
-.hero__paragraph {
-    margin-bottom: 50px;
-    width: 50%;
+.hero__heading > span {
+    background: -webkit-linear-gradient(var(--blue), var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 108px;
+    display: block;
+    letter-spacing: 0.015em;
+}
+
+.home__subtitle {
+    font-size: 48px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.home__paragraph {
+    color: var(--gray);
+    font-size: 16px;
+    text-align: center;
+    width: 60%;
+    margin: auto;
 }
 
 .categories {
@@ -165,6 +237,42 @@ main {
     font-size: 38px;
     text-align: center;
     background: linear-gradient(91.66deg, var(--violet) 7.48%, var(--blue) 97.28%);
+}
+
+.how-buy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 80%;
+    margin: 70px auto;
+}
+
+.how-buy__item {
+    position: relative;
+}
+
+.how-buy__heading {
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 36px;
+}
+
+.how-buy__index {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    color: rgba(243, 243, 243, 0.2);
+    font-weight: bold;
+    margin-top: -30px;
+}
+
+.how-buy__paragraph {
+    margin-top: 30px;
+    line-height: 23px;
+    letter-spacing: 0.015em;
+    color: var(--gray);
 }
 
 .footer {
@@ -276,6 +384,7 @@ main {
     transition: 400ms color, 400ms background;
     background: var(--semi-dark);
     color: var(--violet);
+    text-decoration: none;
 }
 
 .button:hover {
@@ -633,7 +742,7 @@ main {
     color: var(--light);
 }
 
-.form__item > textarea   {
+.form__item > textarea {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
