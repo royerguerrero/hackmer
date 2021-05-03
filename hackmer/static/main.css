@@ -41,6 +41,16 @@ main {
     margin-top: 100px;
 }
 
+a {
+    color: var(--violet);
+    text-decoration: none;
+    transition: 400ms color;
+}
+
+a:hover {
+    color: var(--blue);
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -115,9 +125,8 @@ main {
 }
 
 .hero {
-    padding: 0 10px 80px;
+    padding: 120px 0 80px;
     width: 100%;
-    height: 100vh;
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -129,15 +138,22 @@ main {
     z-index: 1;
 }
 
+.hero img {
+    animation: floating 3s infinite ease-in-out;
+}
+
 .hero__img-first {
     width: 100%;
     z-index: 1;
     object-fit: cover;
+    animation-duration: 5s !important;
 }
 
 .hero__img-second {
     width: 70%;
     z-index: 1;
+    object-fit: cover;
+    animation-duration: 4s !important;
 }
 
 .hero::before {
@@ -148,7 +164,7 @@ main {
     bottom: 0;
     left: 0;
     z-index: 0;
-    transform: translate(-10%, -30%);
+    transform: translate(-20%, 30%);
     border-radius: 50%;
     background: rgba(166, 28, 236, 0.25);
     filter: blur(200px);
@@ -165,7 +181,7 @@ main {
     border-radius: 50%;
     background: rgba(26, 166, 217, 0.25);
     filter: blur(200px);
-    transform: translate(10%, 0%);
+    transform: translate(15%, 0%);
 }
 
 .hero__container {
@@ -240,9 +256,8 @@ main {
 }
 
 .how-buy {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 35px;
     width: 80%;
     margin: 70px auto;
@@ -351,7 +366,7 @@ main {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 3;
     background-color: var(--dark);
     color: var(--light);
     padding: 20px;
@@ -884,6 +899,12 @@ main {
     }
 }
 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 30px); }
+    100%   { transform: translate(0, -0px); }
+}
+
 /* Media Query for Tablets Ipads portrait mode */
 @media (max-width: 1024px) {
     .header__brand {
@@ -966,6 +987,36 @@ main {
     .categories {
         grid-template-columns: 1fr;
         padding: 20px;
+    }
+
+    .hero {
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+    }
+
+    .hero__heading {
+        font-size: 75px;
+        line-height: 60px;
+    }
+
+    .hero__heading > span {
+        font-size: 60px;
+    }
+
+    .hero img  {
+        display: none !important;
+    }
+
+    .home__subtitle {
+        line-height: 45px;
+    }
+
+    .home__paragraph {
+        width: 90%;
+    }
+
+    .how-buy {
+        flex-direction: column;
     }
 
     .footer {
