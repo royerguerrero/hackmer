@@ -48,7 +48,7 @@ a {
 }
 
 a:hover {
-    color: var(--blue);
+    color: var(--gray);
 }
 
 .header {
@@ -125,7 +125,7 @@ a:hover {
 }
 
 .hero {
-    padding: 120px 0 80px;
+    padding: 180px 0 80px;
     width: 100%;
     position: relative;
     display: grid;
@@ -1016,7 +1016,7 @@ a:hover {
     }
 
     .how-buy {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .footer {

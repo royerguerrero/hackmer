@@ -1,5 +1,5 @@
 const handler = ePayco.checkout.configure({
-    key: '11fa8d8829f452cc97328471b12f2a6a',
+    key: '232a768bddccd59f9b91e448915f82ce',
     test: true
 })
 
@@ -20,8 +20,7 @@ const data = {
     description: orderDetail,
     invoice: orderDetailsData.id,
     currency: "cop",
-    // amount: `${orderDetailsData.products.map(product => parseInt(product.price * product.quantity)).reduce((total, i) => total + i)}`,
-    amount: "10000",
+    amount: `${orderDetailsData.products.map(product => parseInt(product.price * product.quantity)).reduce((total, i) => total + i)}`,
     tax_base: "0",
     tax: "0",
     country: "co",
