@@ -13,7 +13,7 @@ class CategoryDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        products = Product.objects.filter(category=super().get_object())
+        products = Product.objects.filter(category=super().get_object(), status=True)
         context['products'] = products
         return context
 
