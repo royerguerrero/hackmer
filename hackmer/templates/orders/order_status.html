@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load product_extras %}
+
+{% block title %} Estado de la order {% endblock %}
+
+{% block content %}
+    <section class="order-status">
+        <div class="order-status__card">
+            <div class="order-status__header">
+                <img class="order-status__icon"
+                     {% if order.status == 'awaiting_payment' %}
+                         src="{% static 'icons/clock.svg' %}"
+                     {% elif order.status == 'preparing_shipment' %}
+                         src="{% static 'icons/truck.svg' %}"
+                     {% elif order.status == 'on_the_way' %}
+                         src="{% static 'icons/truck.svg' %}"
+                     {% elif order.status == 'delivery_refused' %}
+                         src="{% static 'icons/repeat.svg' %}"
+                     {% elif order.status == 'delivered' %}
+                         src="{% static 'icons/check-circle.svg' %}"
+                     {% endif %}
+                     alt="{{ order.get_status_display }} icono">
+                <h1 class="order-status__heading">{{ order.get_status_display }}</h1>
+            </div>
+            <div class="order-status__body">
+                <div>
+                    <h3>Numero de la orden</h3>
+                    {{ order.id }}
+                </div>
+                <div>
+                    <h3>Comprado por</h3>
+                    {{ order.customer.name }} en {{ order.created_at }}
+                </div>
+                <div>
+                    <h3>Valor</h3>
+                    {{ order.get_order_price|format_to_cop }}
+                </div>
+                <div>
+                    <h3>Dirección de envío</h3>
+                    Para conocer la dirección de envío debe comunicarse al 321 489 6631
+                </div>
+            </div>
+            <div class="order-status__footer">
+                <a href="">🧾 Reportar un error</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

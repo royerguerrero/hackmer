@@ -23,7 +23,7 @@ class Order(models.Model):
         ('awaiting_payment', 'Esperando al pago'),
         ('preparing_shipment', 'Preparando para enviar'),
         ('on_the_way', 'En camino'),
-        ('no_delivery_confirmation', 'Sin confirmacion de llegada'),
+        ('no_delivery_confirmation', 'Sin confirmación de llegada'),
         ('delivery_refused', 'Devuelto'),
         ('delivered', 'Entregado'),
     ]
@@ -34,6 +34,13 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
+    def get_order_price(self):
+        total = 0
+        for product in self.products.all():
+            total += product.price * product.quantity
+
+        return total
+    
     def __str__(self):
         return f'{self.id}[{self.customer.name}]'
 

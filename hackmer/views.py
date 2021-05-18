@@ -7,7 +7,7 @@ from django.views.generic import ListView, TemplateView
 from products.models import Category
 
 
-class IndexView(ListView):
+class Index(ListView):
     model = Category
     context_object_name = 'categories'
     template_name = 'home.html'
@@ -15,7 +15,6 @@ class IndexView(ListView):
 
 class Cookies(TemplateView):
     template_name = 'legality/cookies.html'
-
 
 
 class DataHandling(TemplateView):

@@ -11,7 +11,7 @@ from orders.forms import PurchaseForm
 from orders.models import Order, ProductOrder
 
 
-class PurchaseView(FormView):
+class Purchase(FormView):
     template_name = 'orders/purchase.html'
     form_class = PurchaseForm
 
@@ -20,7 +20,7 @@ class PurchaseView(FormView):
         return HttpResponseRedirect(f'/pasarela/{order.id}/')
 
 
-class PaymentView(DetailView):
+class Payment(DetailView):
     model = Order
     template_name = 'orders/payment.html'
 
@@ -29,3 +29,8 @@ class PaymentView(DetailView):
         context['products'] = ProductOrder.objects.filter(order=context['order'])
 
         return context
+
+
+class OrderStatus(DetailView):
+    model = Order
+    template_name = 'orders/order_status.html'
