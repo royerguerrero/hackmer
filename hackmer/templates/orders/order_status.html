@@ -25,20 +25,20 @@
                 <h1 class="order-status__heading">{{ order.get_status_display }}</h1>
             </div>
             <div class="order-status__body">
-                <div>
-                    <h3>Numero de la orden</h3>
+                <div class="order-status__item">
+                    <h3 class="order-status__item-heading">Numero de la orden</h3>
                     {{ order.id }}
                 </div>
-                <div>
-                    <h3>Comprado por</h3>
+                <div class="order-status__item">
+                    <h3 class="order-status__item-heading">Comprado por</h3>
                     {{ order.customer.name }} en {{ order.created_at }}
                 </div>
-                <div>
-                    <h3>Valor</h3>
+                <div class="order-status__item">
+                    <h3 class="order-status__item-heading">Valor</h3>
                     {{ order.get_order_price|format_to_cop }}
                 </div>
-                <div>
-                    <h3>Dirección de envío</h3>
+                <div class="order-status__item">
+                    <h3 class="order-status__item-heading">Dirección de envío</h3>
                     Para conocer la dirección de envío debe comunicarse al 321 489 6631
                 </div>
             </div>

@@ -901,6 +901,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-bottom: 5px solid var(--violet);
 }
 
 .order-status__header {
@@ -923,6 +924,10 @@ a:hover {
     padding: 10px;
     margin: auto;
     gap: 20px;
+}
+
+.order-status__item-heading {
+    text-transform: uppercase;
 }
 
 @keyframes spin {

@@ -32,13 +32,14 @@ const data = {
     extra1: "extra1",
     extra2: "extra2",
     extra3: "extra3",
-    confirmation: "http://secure2.payco.co/prueba_curl.php",
-    response: "http://secure2.payco.co/prueba_curl.php",
+    response: `${window.location.origin}/order/${orderDetailsData.id}/`,
 
     name_billing: orderDetailsData.customer.name,
     address_billing: orderDetailsData.customer.address,
     type_doc_billing: "cc",
     mobilephone_billing: orderDetailsData.customer.phone,
+
+    methodsDisable: ["SP", "DP"]
 }
 
 handler.open(data)

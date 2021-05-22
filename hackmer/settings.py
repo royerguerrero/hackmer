@@ -37,7 +37,7 @@ LOCAL_APPS = [
     'products',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ['django_extensions',]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + LOCAL_APPS
+] + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

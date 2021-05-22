@@ -68,5 +68,6 @@ class PurchaseForm(forms.Form):
             order.products.add(queryset_product,
                                through_defaults={'quantity': int(product[1]), 'price': queryset_product.price - (
                                            queryset_product.price * queryset_product.discount / 100)})
-
+            order.save()        
+        
         return order
