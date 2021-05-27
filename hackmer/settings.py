@@ -26,8 +26,10 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['hackmerstore.com', 'www.hackmerstore.com']
 
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
