@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 ] + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ else:
 # Media configuration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'hackmer/media/'
+
+# Sitemap configuration
+SITE_ID = 1
