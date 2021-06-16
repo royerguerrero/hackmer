@@ -355,10 +355,11 @@ a:hover {
 }
 
 .legality__content {
-    width: 80%;
+    width: 50%;
     margin: auto;
     text-align: justify;
-    font-size: 18px;
+    font-size: 17px;
+    line-height: 27px;
 }
 
 .cart {

@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {% trans "Hackmer Store Manager" %}{% endblock %}
+{% block extrastyle %}
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'icons/favicon.jpg' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}"/>
+{% endblock %}
+{% block branding %}
+    <a href="/admin/">
+        <img src="{% static 'images/Logo.svg' %}" width="130px" alt="Logotipo de hackmer">
+    </a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
